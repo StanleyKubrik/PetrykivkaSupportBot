@@ -20,11 +20,11 @@ def choose_base_for_exchange(message):
     markup = tb.types.ReplyKeyboardMarkup()
     for command in bases:
         markup.add(tb.types.KeyboardButton(command))
-    bot.send_message(message.chat.id, "Choose a command:", reply_markup=markup)
+    bot.send_message(message.chat.id, "Choose a base:", reply_markup=markup)
     bot.register_next_step_handler(message, exchange)
 
 
 def exchange(message):
-    bot.send_message(message.chat.id, "Wait for answer!", reply_markup=tb.types.ReplyKeyboardRemove())
+    bot.send_message(message.chat.id, "Exchange run, wait for complete...", reply_markup=tb.types.ReplyKeyboardRemove())
     result = e.exchangeRun(message.text)
     bot.send_message(message.chat.id, result)
