@@ -5,6 +5,6 @@ import time
 
 if __name__ == '__main__':
     # bot.polling()
-    result = e.exchangeRun('Petrykivka')
+    result = e.exchangeRun('Peremoga')
     print(result)
     # e.runTask('ExchangeSQL-Petrykivka', None, 'current')
