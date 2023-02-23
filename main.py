@@ -9,4 +9,4 @@ if __name__ == '__main__':
     # print(result)
     # e.runTask('ExchangeSQL-Petrykivka', None, 'current')
 
-    # print(SQL().get_people_by_telegram_id(329518676))
+    print(SQL().get_people_by_telegram_id(329518676))
