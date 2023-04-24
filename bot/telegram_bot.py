@@ -1,7 +1,6 @@
 import time
-
 import telebot as tb
-import exchange as e
+from utils import exchange as e
 from sql import SQL
 
 API_KEY = '6060675197:AAEzZB1pKlZ0Tw26l9zZupgn5Nbbf9TK4dc'
