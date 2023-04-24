@@ -1,5 +1,5 @@
-from config import *
-from sqlalchemy import create_engine, text
+from config.config import *
+from sqlalchemy import create_engine
 from datetime import datetime
 
 APP_CONFIG_PATH = 'config.ini'

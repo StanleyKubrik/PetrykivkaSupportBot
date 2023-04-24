@@ -1,3 +1,5 @@
+import time
+
 import telebot as tb
 import exchange as e
 from sql import SQL
@@ -18,15 +20,11 @@ def start(message):
 
 @bot.message_handler(commands=['exchange'])
 def choose_base_for_exchange(message):
-    # bases = ['Petrykivka', 'Peremoga']
-    markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    petrykivka = tb.types.KeyboardButton('Petrykivka')
-    peremoga = tb.types.KeyboardButton('Peremoga')
-    markup.row(petrykivka, peremoga)
-    # for command in bases:
-    #     markup.add(tb.types.KeyboardButton(command))
-    #     markup.row(command)
-    bot.send_message(message.chat.id, "*Choose a base:*", reply_markup=markup, parse_mode='markdown')
+    bases = ['Petrykivka', 'Peremoga']
+    markup = tb.types.ReplyKeyboardMarkup()
+    for command in bases:
+        markup.add(tb.types.KeyboardButton(command))
+    bot.send_message(message.chat.id, "Choose a base:", reply_markup=markup)
     bot.register_next_step_handler(message, exchange)
 
 
