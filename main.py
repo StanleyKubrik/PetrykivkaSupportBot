@@ -1,8 +1,20 @@
-from utils import exchange as e
+from bot import tg_bot
 from bot import telegram_bot
-from sql import SQL
+
 
 if __name__ == '__main__':
     telegram_bot.bot.polling()
 
-    # print(SQL().get_people_by_telegram_id(329518676))
+    # roles = {
+    #     '329518676': 'support',
+    #     '327444916': 'user'
+    # }
+    # COMMANDS = {
+    #     'support': ['Start',
+    #                 'Exchange 1C7-SQL'
+    #                 ],
+    #     'user': ['Dick']
+    # }
+    #
+    # print(roles.get('327444916'))
+    # print(COMMANDS.get('user'))

@@ -1,39 +1,31 @@
 import time
 import telebot as tb
 from utils import exchange as e
-from sql import SQL
+
+# from sql import SQL
 
 API_KEY = '6060675197:AAEzZB1pKlZ0Tw26l9zZupgn5Nbbf9TK4dc'
-COMMANDS = [tb.types.BotCommand('/start', 'Start'),
-            tb.types.BotCommand('/exchange', 'Exchange 1C7-SQL')
-            ]
+roles = {
+    329518676: 'support',
+    327444916: 'user'
+}
+COMMANDS = {
+    'support': [tb.types.BotCommand('/start', 'Start'),
+                tb.types.BotCommand('/exchange', 'Exchange 1C7-SQL')
+                ],
+    'user': [tb.types.BotCommand('/show_dick', 'Dick')]
+}
 bot = tb.TeleBot(API_KEY)
-bot.set_my_commands(COMMANDS)
-connect = SQL()
+
+
+# connect = SQL()
 
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, f'Hello, bitch! What do you want?')
-
-
-@bot.message_handler(commands=['exchange'])
-def choose_base_for_exchange(message):
-    bases = ['Petrykivka', 'Peremoga']
-    markup = tb.types.ReplyKeyboardMarkup()
-    for command in bases:
-        markup.add(tb.types.KeyboardButton(command))
-    bot.send_message(message.chat.id, "Choose a base:", reply_markup=markup)
-    bot.register_next_step_handler(message, exchange)
-
-
-def exchange(message):
-    bot.send_message(message.chat.id, "Exchange run, wait for complete...", reply_markup=tb.types.ReplyKeyboardRemove())
-    result = e.exchangeRun(message.text)
-    bot.send_message(message.chat.id, result)
-
-
-@bot.message_handler(commands=['getusererp'])
-def getUserERP(message):
-    user_adin_s = connect.get_people_by_telegram_id(message.chat.id)
-    bot.send_message(message.chat.id, f'You are {user_adin_s}')
+    if roles.get(message.chat.id) == 'support':
+        bot.set_my_commands(COMMANDS.get('support'))
+        bot.send_message(message.chat.id, f'Hello, bitch! What do you want?')
+    else:
+        bot.set_my_commands(COMMANDS.get('user'))
+        bot.send_message(message.chat.id, f'Do u want see my dick?')
