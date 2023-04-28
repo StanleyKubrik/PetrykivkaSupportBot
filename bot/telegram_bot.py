@@ -1,10 +1,9 @@
-import time
 import telebot as tb
-from utils import exchange as e
-
+from config.config import *
 # from sql import SQL
 
-API_KEY = '6060675197:AAEzZB1pKlZ0Tw26l9zZupgn5Nbbf9TK4dc'
+APP_CONFIG_PATH = 'config.ini'
+app_config = Config(APP_CONFIG_PATH)
 roles = {
     329518676: 'support',
     327444916: 'user'
@@ -15,9 +14,7 @@ COMMANDS = {
                 ],
     'user': [tb.types.BotCommand('/show_dick', 'Dick')]
 }
-bot = tb.TeleBot(API_KEY)
-
-
+bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
 # connect = SQL()
 
 

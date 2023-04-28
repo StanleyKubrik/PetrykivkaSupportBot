@@ -1,6 +1,7 @@
-from config.config import *
+import sqlalchemy
 from sqlalchemy import create_engine
 from datetime import datetime
+from config.config import *
 
 APP_CONFIG_PATH = 'config.ini'
 app_config = Config(APP_CONFIG_PATH)
@@ -30,5 +31,6 @@ class SQL:
             print(datetime.now().strftime("%H:%M:%S"), '|', f'Connected to SQL DB {self.database}!')
 
     def get_people_by_telegram_id(self, telegram_id):
-        sql_query = f'SELECT DESCR FROM dbo.People P INNER JOIN dbo.People_Ext PE ON PE.People_ID = P.ID WHERE PE.TelegramChatID = ({telegram_id})'
+        sql_query = f'SELECT DESCR FROM dbo.People P ' \
+                    f'INNER JOIN dbo.People_Ext PE ON PE.People_ID = P.ID WHERE PE.TelegramChatID = ({telegram_id})'
         return f"'{self.conn.exec_driver_sql(sql_query).first()[0]}'"
