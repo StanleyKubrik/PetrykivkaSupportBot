@@ -1,5 +1,6 @@
 import sqlalchemy
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from config.config import *
 
@@ -11,6 +12,7 @@ class SQL:
     def __init__(self):
         self.engine = None
         self.conn = None
+        self.session = None
         self.driver = 'ODBC Driver 17 for SQL Server'
         self.server = app_config.get_setting('SQL', 'server')
         self.port = app_config.get_setting('SQL', 'port')
@@ -25,6 +27,7 @@ class SQL:
                                  f'/{self.database}?driver={self.driver}'
                 self.engine = create_engine(connection_uri, fast_executemany=True)
                 self.conn = self.engine.connect()
+                self.session = sessionmaker(self.engine)
         except sqlalchemy.exc.InterfaceError as e:
             print(datetime.now().strftime("%H:%M:%S"), '|', f"Can't connection to DB {self.database}: " + str(e))
         else:
