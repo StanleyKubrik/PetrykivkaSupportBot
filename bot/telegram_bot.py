@@ -2,7 +2,7 @@ import telebot as tb
 from config.config import *
 # from sql import SQL
 
-APP_CONFIG_PATH = 'config.ini'
+APP_CONFIG_PATH = './config/config.ini'
 app_config = Config(APP_CONFIG_PATH)
 roles = {
     329518676: 'support',
@@ -14,7 +14,8 @@ COMMANDS = {
                 ],
     'user': [tb.types.BotCommand('/show_dick', 'Dick')]
 }
-bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
+bot = tb.TeleBot('6060675197:AAEzZB1pKlZ0Tw26l9zZupgn5Nbbf9TK4dc')
+# bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
 # connect = SQL()
 
 
