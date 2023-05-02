@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from config.config import *
 
-APP_CONFIG_PATH = 'config.ini'
+APP_CONFIG_PATH = 'config/config.ini'
 app_config = Config(APP_CONFIG_PATH)
 
 
