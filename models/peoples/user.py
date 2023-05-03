@@ -9,4 +9,4 @@ class User(Base):
     name = Column(VARCHAR(50))
     surname = Column(VARCHAR(50))
     telegramchatid = Column(BIGINT)
-    isactive = Column(BOOLEAN, default=1)
+    isactive = Column(Boolean, default=1)

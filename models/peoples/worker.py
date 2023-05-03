@@ -1,10 +1,6 @@
-# from models.migrate import Base
+from models.migrate import *
 from sqlalchemy import *
-from sql import SQL
-from sqlalchemy.orm import declarative_base, sessionmaker
-
-
-Base = declarative_base()
+from sqlalchemy.orm import sessionmaker
 
 
 class Worker(Base):
@@ -14,11 +10,16 @@ class Worker(Base):
     name = Column(VARCHAR(50))
     surname = Column(VARCHAR(50))
     telegramchatid = Column(BIGINT)
-    isactive = Column(BOOLEAN, default=1)
+    isactive = Column(Boolean, default=1)
 
+    def __init__(self, name, surname, telegramchatid, isactive=1):
+        self.name = name
+        self.surname = surname
+        self.telegramchatid = telegramchatid
+        self.isactive = isactive
 
-# Session = sessionmaker(engine)
-# session = Session()
-# new_worker = Worker(name='Vlad', surname='Petryk', telegramchatid='513153658')
-# session.add(new_worker)
-# session.commit()
+    def create_worker(self):
+        session.add(self)
+        session.commit()
+
+        print('User successfully created!')
