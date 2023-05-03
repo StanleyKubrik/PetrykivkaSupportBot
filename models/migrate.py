@@ -1,12 +1,15 @@
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy import *
 from sql import SQL
 
-mig_engine = SQL().engine
+# mig_engine = SQL().eng
+engine = create_engine("sqlite:///models/hui.sqlite3", echo=True)
 Base = declarative_base()
 
-Session = sessionmaker(mig_engine)
+Session = sessionmaker(engine)
 session = Session()
 
 
 def migrate():
-    Base.metadata.create_all(mig_engine)
+    # Base.metadata.create_all(engine)
+    Base.metadata.clear()

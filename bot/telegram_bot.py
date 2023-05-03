@@ -21,9 +21,9 @@ bot = tb.TeleBot('6060675197:AAEzZB1pKlZ0Tw26l9zZupgn5Nbbf9TK4dc')
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    if roles.get(message.chat.id) == 'support':
+    if roles.get(message.chat.ID) == 'support':
         bot.set_my_commands(COMMANDS.get('support'))
-        bot.send_message(message.chat.id, f'Hello, bitch! What do you want?')
+        bot.send_message(message.chat.ID, f'Hello, bitch! What do you want?')
     else:
         bot.set_my_commands(COMMANDS.get('user'))
-        bot.send_message(message.chat.id, f'Do u want see my dick?')
+        bot.send_message(message.chat.ID, f'Do u want see my dick?')
