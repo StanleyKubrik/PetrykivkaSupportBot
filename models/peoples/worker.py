@@ -1,15 +1,24 @@
 from sqlalchemy import *
+from models.base import *
 
 
-class Worker:
-    def __init__(self, name, surname, telegramchatid, isactive=1):
-        self.name = name
-        self.surname = surname
-        self.telegramchatid = telegramchatid
-        self.isactive = isactive
+class Worker(Base):
+    __table__ = 'Workers'
 
-    def createWorker(self):
-        print('User successfully created!')
+    ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
+    Name = Column(VARCHAR(50))
+    Surname = Column(VARCHAR(50))
+    TelegramChatID = Column(BIGINT)
+    IsActive = Column(Boolean, default=1)
 
-    def getWorker(self):
-        pass
+    def add_new_worker(self, name, surname, telegramchatid, isactive=1):
+        self.Name = name
+        self.Surname = surname
+        self.TelegramChatID = telegramchatid
+        self.IsActive = isactive
+
+    #     session.add(self)
+    #     session.commit()
+    #
+    # def get_worker_by_id(self, id):
+    #     return session.query(self).filter_by(ID=f'{id}')
