@@ -6,10 +6,10 @@ class User(Base):
     __tablename__ = 'Users'
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
-    Name = Column(VARCHAR(50))
-    Surname = Column(VARCHAR(50))
-    TelegramChatID = Column(BIGINT)
-    IsActive = Column(Boolean, default=1)
+    Name = Column(VARCHAR(50), nullable=False)
+    Surname = Column(VARCHAR(50), nullable=False)
+    TelegramChatID = Column(BIGINT, nullable=False)
+    IsActive = Column(Boolean, nullable=False, default=1)
 
     def add_new_user(self, name, surname, telegramchatid, isactive=1):
         self.Name = name
