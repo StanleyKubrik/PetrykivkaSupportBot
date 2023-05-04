@@ -11,5 +11,5 @@ session = Session()
 
 
 def migrate():
-    # Base.metadata.create_all(engine)
-    Base.metadata.clear()
+    Base.metadata.create_all(engine)
+    # Base.metadata.clear()
