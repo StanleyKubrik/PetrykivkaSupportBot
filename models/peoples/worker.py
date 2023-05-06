@@ -1,9 +1,9 @@
-from sqlalchemy import *
-from models.base import *
+from sqlalchemy import Column, Integer, VARCHAR, BIGINT, Boolean
+from models.base import Base
 
 
 class Worker(Base):
-    __table__ = 'Workers'
+    __tablename__ = 'Workers'
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     Name = Column(VARCHAR(50), nullable=False)
