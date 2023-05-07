@@ -4,6 +4,7 @@ from models.base import Base
 
 class Worker(Base):
     __tablename__ = 'Workers'
+    # __table_args__ = {'schema': 'Peoples'}
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     Name = Column(VARCHAR(50), nullable=False)
