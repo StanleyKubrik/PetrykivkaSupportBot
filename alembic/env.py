@@ -6,16 +6,18 @@ from alembic import context
 from models.peoples.worker import *
 from models.peoples.user import *
 from models.peoples.departments import *
-from models.base import Base
+from models.base import Base, sql_engine
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+config.set_main_option('sqlalchemy.url', sql_engine.url.__str__().replace('***', '5Hp9eW0Nn^Wr'))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
+
 
 # add your model's MetaData object here
 # for 'autogenerate' support
