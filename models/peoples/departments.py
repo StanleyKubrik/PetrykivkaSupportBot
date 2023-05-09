@@ -2,7 +2,7 @@ from sqlalchemy import *
 from models.base import Base, session
 
 
-class Department(Base):
+class Departments(Base):
     __tablename__ = 'Departments'
     __table_args__ = {'schema': 'Peoples'}
 

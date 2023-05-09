@@ -3,8 +3,8 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 
-from models.peoples.worker import *
-from models.peoples.user import *
+from models.peoples.workers import *
+from models.peoples.users import *
 from models.peoples.departments import *
 from models.base import Base, sql_engine
 
