@@ -21,5 +21,5 @@ class User(Base):
         session.add(self)
         session.commit()
 
-    def get_user_by_id(self, id):
-        return session.query(self).filter_by(ID=f'{id}')
+    def get_user_by_id(self, user_id: int):
+        return session.query(self).filter_by(ID=f'{user_id}')

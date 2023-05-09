@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, sessionmaker
-from sql import SQL
+from models.sql import SQL
 
 sql_engine = SQL().engine
 Base = declarative_base()

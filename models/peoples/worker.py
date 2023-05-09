@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, VARCHAR, BIGINT, Boolean
+from sqlalchemy import *
 from models.base import Base, session
 
 
@@ -12,7 +12,7 @@ class Worker(Base):
     TelegramChatID = Column(BIGINT, nullable=False)
     IsActive = Column(Boolean, nullable=False, default=1)
 
-    def add_new_worker(self, name, surname, telegramchatid, isactive=1):
+    def add_new_worker(self, name: str, surname: str, telegramchatid: int, isactive: bool = 1):
         self.Name = name
         self.Surname = surname
         self.TelegramChatID = telegramchatid
@@ -21,5 +21,5 @@ class Worker(Base):
         session.add(self)
         session.commit()
 
-    def get_worker_by_id(self, id):
-        return session.query(self).filter_by(ID=f'{id}')
+    def get_worker_by_id(self, worker_id: int):
+        return session.query(self).filter_by(ID=f'{worker_id}')
