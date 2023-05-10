@@ -18,6 +18,7 @@ class Tickets(Base):
 
     appeals = relationship('Appeals.Appeals', back_populates='tickets')
     ticket_category = relationship('Tickets.TicketCategories', back_populates='tickets')
+    ticket_category_property_values = relationship('Tickets.TicketCategoryPropertyValues', back_populates='tickets')
 
     def get_ticket_by_id(self, ticket_id: int):
         return session.query(self).filter_by(ID=f'{ticket_id}')

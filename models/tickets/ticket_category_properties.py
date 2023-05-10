@@ -1,4 +1,5 @@
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 from models.base import Base, session
 
 
@@ -8,9 +9,11 @@ class TicketCategoryProperties(Base):
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     UpdateDateTime = Column(DateTime, nullable=False)
-    Ticket_ID = Column(Integer, ForeignKey('Tickets.Tickets.ID', onupdate='CASCADE', ondelete='CASCADE'), nullable=False)
-    TicketCategoryProperty_ID = Column(Integer, ForeignKey('Tickets.Tickets.ID', onupdate='CASCADE', ondelete='CASCADE'), nullable=False)
-    Value = Column(VARCHAR(), nullable=False)
+    TicketCategory_ID = Column(Integer, ForeignKey('Tickets.TicketCategories.ID',
+                                                   onupdate='CASCADE',
+                                                   ondelete='CASCADE'),
+                               nullable=False)
 
-    def get_ticket_by_id(self, ticket_id: int):
-        return session.query(self).filter_by(ID=f'{ticket_id}')
+    ticket_category = relationship('Tickets.TicketCategories', back_populates='ticket_category_properties')
+    ticket_category_property_values = relationship('Tickets.TicketCategoryPropertyValues',
+                                                   back_populates='tickets_category_properties')
