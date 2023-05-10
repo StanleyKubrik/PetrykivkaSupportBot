@@ -3,9 +3,16 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 
-from models.peoples.workers import *
-from models.peoples.users import *
-from models.peoples.departments import *
+from models.appeals.appeals import *
+from models.appeals.appeal_statuses import *
+from models.appeals.processed_messages import *
+from models.people.workers import *
+from models.people.users import *
+from models.people.departments import *
+from models.tickets.tickets import *
+from models.tickets.ticket_categories import *
+from models.tickets.ticket_category_properties import *
+from models.tickets.ticket_category_property_values import *
 from models.base import Base, sql_engine
 
 # this is the Alembic Config object, which provides

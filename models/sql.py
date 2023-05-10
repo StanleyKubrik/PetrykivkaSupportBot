@@ -34,11 +34,11 @@ class SQL:
 
 def get_db_url(sql_base):
     driver = 'ODBC Driver 17 for SQL Server'
-    server = app_config.get_setting('SQL', 'server')
-    port = app_config.get_setting('SQL', 'port')
-    database = app_config.get_setting('SQL', 'database')
-    username = app_config.get_setting('SQL', 'username')
-    password = app_config.get_setting('SQL', 'password')
+    server = ''
+    port = ''
+    database = ''
+    username = ''
+    password = ''
 
     if sql_base == 'PetrykivkaSupportBot':
         server = app_config.get_setting('SQL_Bot', 'server')

@@ -5,11 +5,10 @@ from models.base import Base, session
 
 class TicketCategoryProperties(Base):
     __tablename__ = 'TicketCategoryProperties'
-    __table_args__ = {'schema': 'Tickets',
-                      'constraints': [
-                          ForeignKeyConstraint(['TicketCategory_ID'], ['Tickets.TicketCategories.ID'])
-                      ]
-                      }
+    __table_args__ = (
+        ForeignKeyConstraint(['TicketCategory_ID'], ['Tickets.TicketCategories.ID']),
+        {'schema': 'Tickets'}
+    )
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     UpdateDateTime = Column(DateTime, nullable=False)

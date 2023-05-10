@@ -5,22 +5,24 @@ from models.base import Base, session
 
 class Tickets(Base):
     __tablename__ = 'Tickets'
-    __table_args__ = {'schema': 'Tickets',
-                      'constraints': [
-                          ForeignKeyConstraint(['Appeal_ID'], ['Appeals.Appeals.ID']),
-                          ForeignKeyConstraint(['TicketCategory_ID'], ['Tickets.TicketCategories.ID'])
-                      ]
-                      }
+    __table_args__ = (
+        ForeignKeyConstraint(['Appeal_ID'], ['Appeals.Appeals.ID']),
+        ForeignKeyConstraint(['TicketCategory_ID'], ['Tickets.TicketCategories.ID']),
+        {'schema': 'Tickets'}
+    )
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     DateTime = Column(DateTime, nullable=False)
+    Worker_ID = Column(Integer, ForeignKey('People.Workers.ID'), nullable=False)
     Appeal_ID = Column(Integer, ForeignKey('Appeals.Appeals.ID', onupdate='CASCADE', ondelete='CASCADE'),
                        nullable=False)
     TicketCategory_ID = Column(Integer, ForeignKey('Tickets.TicketCategories.ID',
                                                    onupdate='CASCADE',
                                                    ondelete='CASCADE'),
                                nullable=False)
+    Responsible_ID = Column(Integer, ForeignKey('People.Workers.ID'))
 
+    workers = relationship('People.Workers', back_populates='tickets')
     appeals = relationship('Appeals.Appeals', back_populates='tickets')
     ticket_category = relationship('Tickets.TicketCategories', back_populates='tickets')
     ticket_category_property_values = relationship('Tickets.TicketCategoryPropertyValues', back_populates='tickets')

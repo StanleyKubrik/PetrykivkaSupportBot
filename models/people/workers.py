@@ -1,10 +1,11 @@
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 from models.base import Base, session
 
 
-class Users(Base):
-    __tablename__ = 'Users'
-    __table_args__ = {'schema': 'Peoples'}
+class Workers(Base):
+    __tablename__ = 'Workers'
+    __table_args__ = {'schema': 'People'}
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     Name = Column(VARCHAR(50), nullable=False)
@@ -12,7 +13,9 @@ class Users(Base):
     TelegramChatID = Column(BIGINT, nullable=False)
     IsActive = Column(Boolean, nullable=False, default=1)
 
-    def add_new_user(self, name, surname, telegramchatid, isactive=1):
+    tickets = relationship('Tickets.Tickets', back_populates='workers')
+
+    def add_new_worker(self, name: str, surname: str, telegramchatid: int, isactive: bool = 1):
         self.Name = name
         self.Surname = surname
         self.TelegramChatID = telegramchatid
@@ -21,5 +24,5 @@ class Users(Base):
         session.add(self)
         session.commit()
 
-    def get_user_by_id(self, user_id: int):
-        return session.query(self).filter_by(ID=f'{user_id}')
+    def get_worker_by_id(self, worker_id: int):
+        return session.query(self).filter_by(ID=f'{worker_id}')
