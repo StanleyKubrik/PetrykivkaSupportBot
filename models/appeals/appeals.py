@@ -9,7 +9,8 @@ class Appeals(Base):
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     DateTime = Column(DateTime, nullable=False)
-    AppealStatus_ID = Column(Integer, nullable=False)
+    AppealStatus_ID = Column(Integer, ForeignKey('Appeals.AppealStatuses.ID', onupdate='CASCADE', ondelete='CASCADE'),
+                             nullable=False)
     Text = Column(VARCHAR(), nullable=True)
     MediaID = Column(Integer, nullable=True)
     Departament_ID = Column(Integer, nullable=False)

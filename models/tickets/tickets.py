@@ -5,7 +5,12 @@ from models.base import Base, session
 
 class Tickets(Base):
     __tablename__ = 'Tickets'
-    __table_args__ = {'schema': 'Tickets'}
+    __table_args__ = {'schema': 'Tickets',
+                      'constraints': [
+                          ForeignKeyConstraint(['Appeal_ID'], ['Appeals.Appeals.ID']),
+                          ForeignKeyConstraint(['TicketCategory_ID'], ['Tickets.TicketCategories.ID'])
+                      ]
+                      }
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     DateTime = Column(DateTime, nullable=False)
