@@ -8,19 +8,17 @@ class Tickets(Base):
     __table_args__ = (
         ForeignKeyConstraint(['Appeal_ID'], ['Appeals.Appeals.ID']),
         ForeignKeyConstraint(['TicketCategory_ID'], ['Tickets.TicketCategories.ID']),
+        ForeignKeyConstraint(['Worker_ID'], ['People.Workers.ID']),
+        ForeignKeyConstraint(['Responsible_ID'], ['People.Workers.ID']),
         {'schema': 'Tickets'}
     )
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     DateTime = Column(DateTime, nullable=False)
-    Worker_ID = Column(Integer, ForeignKey('People.Workers.ID'), nullable=False)
-    Appeal_ID = Column(Integer, ForeignKey('Appeals.Appeals.ID', onupdate='CASCADE', ondelete='CASCADE'),
-                       nullable=False)
-    TicketCategory_ID = Column(Integer, ForeignKey('Tickets.TicketCategories.ID',
-                                                   onupdate='CASCADE',
-                                                   ondelete='CASCADE'),
-                               nullable=False)
-    Responsible_ID = Column(Integer, ForeignKey('People.Workers.ID'))
+    Worker_ID = Column(Integer, nullable=False)
+    Appeal_ID = Column(Integer, nullable=False)
+    TicketCategory_ID = Column(Integer, nullable=False)
+    Responsible_ID = Column(Integer)
 
     workers = relationship('People.Workers', back_populates='tickets')
     appeals = relationship('Appeals.Appeals', back_populates='tickets')

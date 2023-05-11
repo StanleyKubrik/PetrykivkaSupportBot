@@ -5,13 +5,17 @@ from models.base import Base, session
 
 class Appeals(Base):
     __tablename__ = 'Appeals'
-    __table_args__ = {'schema': 'Appeals'}
+    __table_args__ = (
+        ForeignKeyConstraint(['User_ID'], ['People.Users.ID']),
+        ForeignKeyConstraint(['AppealStatus_ID'], ['Appeals.AppealStatuses.ID']),
+        ForeignKeyConstraint(['Departament_ID'], ['People.Departments.ID']),
+        {'schema': 'Appeals'}
+    )
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     DateTime = Column(DateTime, nullable=False)
-    User_ID = Column(Integer, ForeignKey('People.Users.ID'), nullable=False)
-    AppealStatus_ID = Column(Integer, ForeignKey('Appeals.AppealStatuses.ID', onupdate='CASCADE', ondelete='CASCADE'),
-                             nullable=False)
+    User_ID = Column(Integer, nullable=False)
+    AppealStatus_ID = Column(Integer, nullable=False)
     Text = Column(VARCHAR(), nullable=True)
     MediaID = Column(Integer, nullable=True)
     Departament_ID = Column(Integer, nullable=False)

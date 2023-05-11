@@ -12,9 +12,7 @@ class TicketCategoryProperties(Base):
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     UpdateDateTime = Column(DateTime, nullable=False)
-    TicketCategory_ID = Column(Integer,
-                               ForeignKey('Tickets.TicketCategories.ID', onupdate='CASCADE', ondelete='CASCADE'),
-                               nullable=False)
+    TicketCategory_ID = Column(Integer, nullable=False)
 
     ticket_category = relationship('Tickets.TicketCategories', back_populates='ticket_category_properties')
     ticket_category_property_values = relationship('Tickets.TicketCategoryPropertyValues',
