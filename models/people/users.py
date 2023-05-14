@@ -10,11 +10,15 @@ class Users(Base):
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     Name = Column(VARCHAR(50), nullable=False)
     Surname = Column(VARCHAR(50), nullable=False)
+    PhoneNumber = Column(Integer, nullable=False)
     TelegramChatID = Column(BIGINT, nullable=False)
+    RoleID = Column(Integer, nullable=False)
     IsActive = Column(Boolean, nullable=False, default=1)
 
     processed_messages = relationship('Appeals.ProcessedMessages', back_populates='users')
     appeals = relationship('Appeals.Appeals', back_populates='users')
+    tickets = relationship('Tickets.Tickets', back_populates='users')
+    roles = relationship('People.Roles', back_populates='users')
 
     def add_new_user(self, name, surname, telegramchatid, isactive=1):
         self.Name = name
