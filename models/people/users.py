@@ -1,6 +1,6 @@
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
-from models.base import Base, session
+from models.base import Base  # , session
 
 
 class Users(Base):

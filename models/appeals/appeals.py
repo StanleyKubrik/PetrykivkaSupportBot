@@ -1,6 +1,6 @@
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
-from models.base import Base, session
+from models.base import Base  # , session
 
 
 class Appeals(Base):
@@ -25,5 +25,5 @@ class Appeals(Base):
     appeal_statuses = relationship('Appeals.AppealStatuses', back_populates='appeals')
     departments = relationship('People.Departments', back_populates='appeals')
 
-    def get_appeal_by_id(self, appeal_id: int):
-        return session.query(self).filter_by(ID=f'{appeal_id}')
+    # def get_appeal_by_id(self, appeal_id: int):
+    #     return session.query(self).filter_by(ID=f'{appeal_id}')
