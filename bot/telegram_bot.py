@@ -1,5 +1,6 @@
 import telebot as tb
 from config.config import *
+
 # from sql import SQL
 
 APP_CONFIG_PATH = './config/config.ini'
@@ -11,12 +12,14 @@ roles = {
 COMMANDS = {
     'support': [tb.types.BotCommand('/start', 'Start'),
                 tb.types.BotCommand('/exchange', 'Exchange 1C7-SQL'),
-                tb.types.BotCommand('/get_my_number', 'My number')
-
+                tb.types.BotCommand('/show_yurec', 'Yurec')
                 ],
-    'user': [tb.types.BotCommand('/show_dick', 'Dick')]
+    'user': [tb.types.BotCommand('/show_dick', 'Dick'),
+             tb.types.BotCommand('/show_yurec', 'Yurec')]
 }
 bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
+
+
 # connect = SQL()
 
 
@@ -30,6 +33,7 @@ def start(message):
         bot.send_message(message.chat.id, f'Do u want see my dick?')
 
 
-@bot.message_handler(commands=['get_my_number'])
-def get_my_number(message):
-    bot.send_message(message.chat.id, message.chat)
+@bot.message_handler(commands=['show_yurec'])
+def show_yurec(message):
+    with open('ph.jpg', 'rb') as ph:
+        bot.send_photo(message.chat.id, ph)
