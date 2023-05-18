@@ -1,6 +1,7 @@
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 from models.base import Base  # , session
+from models.appeals.appeals import *
 
 
 class Departments(Base):
@@ -10,4 +11,4 @@ class Departments(Base):
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     Name = Column(VARCHAR(50), nullable=False)
 
-    appeals = relationship('Appeals.Appeals', back_populates='departments')
+    appeals = relationship('Appeals', back_populates='departments')

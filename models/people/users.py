@@ -1,6 +1,10 @@
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
-from models.base import Base  # , session
+from models.base import Base, session
+from models.appeals.processed_messages import *
+from models.appeals.appeals import *
+from models.tickets.tickets import *
+from models.people.roles import *
 
 
 class Users(Base):
@@ -12,22 +16,13 @@ class Users(Base):
     Surname = Column(VARCHAR(50), nullable=False)
     PhoneNumber = Column(Integer, nullable=False)
     TelegramChatID = Column(BIGINT, nullable=False)
-    RoleID = Column(Integer, nullable=False)
+    Role_ID = Column(Integer, ForeignKey('People.Roles.ID'), nullable=False)
     IsActive = Column(Boolean, nullable=False, default=1)
 
-    processed_messages = relationship('Appeals.ProcessedMessages', back_populates='users')
-    appeals = relationship('Appeals.Appeals', back_populates='users')
-    tickets = relationship('Tickets.Tickets', back_populates='users')
-    roles = relationship('People.Roles', back_populates='users')
-
-    def add_new_user(self, name, surname, telegramchatid, isactive=1):
-        self.Name = name
-        self.Surname = surname
-        self.TelegramChatID = telegramchatid
-        self.IsActive = isactive
-
-        session.add(self)
-        session.commit()
+    processed_messages = relationship('ProcessedMessages', back_populates='users')
+    appeals = relationship('Appeals', back_populates='users')
+    tickets = relationship('Tickets', back_populates='users')
+    roles = relationship('Roles', back_populates='users')
 
     def get_user_by_id(self, user_id: int):
         return session.query(self).filter_by(ID=f'{user_id}')
