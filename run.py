@@ -5,6 +5,4 @@ from models.people.users import *
 
 
 if __name__ == '__main__':
-    # bot.polling()
-
-    print(session.query(Users.Name).filter(Users.TelegramChatID == 329518676).scalar())
+    bot.polling()

@@ -14,7 +14,7 @@ class Users(Base):
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
     Name = Column(VARCHAR(50), nullable=False)
     Surname = Column(VARCHAR(50), nullable=False)
-    PhoneNumber = Column(Integer, nullable=False)
+    PhoneNumber = Column(BIGINT, nullable=False)
     TelegramChatID = Column(BIGINT, nullable=False)
     Role_ID = Column(Integer, ForeignKey('People.Roles.ID'), nullable=False)
     IsActive = Column(Boolean, nullable=False, default=1)
@@ -28,8 +28,7 @@ class Users(Base):
         return session.query(self).filter_by(ID=f'{user_id}')
 
 
-def get_user_by_telegram_id(user_telegram_id: int):
-    if session.query(Users).filter_by(TelegramChatID=f'{user_telegram_id}') is not None:
-        return 1
-    else:
-        return 0
+def get_user_role_by_telegram_id(user_telegram_id: int):
+    return session.query(Users.Role_ID).filter(
+        and_(Users.TelegramChatID == user_telegram_id, Users.IsActive == 1)
+    ).scalar()
