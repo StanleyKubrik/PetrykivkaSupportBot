@@ -29,6 +29,12 @@ class Users(Base):
 
 
 def get_user_role_by_telegram_id(user_telegram_id: int):
-    return session.query(Users.Role_ID).filter(
-        and_(Users.TelegramChatID == user_telegram_id, Users.IsActive == 1)
-    ).scalar()
+    return session.query(Users.Role_ID)\
+        .filter(and_(Users.TelegramChatID == user_telegram_id, Users.IsActive == 1))\
+        .scalar()
+
+
+def get_admins_chat_id():
+    return session.query(Users.TelegramChatID) \
+        .filter(and_(Users.Role_ID == 1, Users.IsActive == 1)) \
+        .all()
