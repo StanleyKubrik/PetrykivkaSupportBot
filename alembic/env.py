@@ -6,9 +6,9 @@ from alembic import context
 from models.appeals.appeals import *
 from models.appeals.appeal_statuses import *
 from models.appeals.processed_messages import *
-from models.people.workers import *
 from models.people.users import *
 from models.people.departments import *
+from models.people.roles import *
 from models.tickets.tickets import *
 from models.tickets.ticket_categories import *
 from models.tickets.ticket_category_properties import *
