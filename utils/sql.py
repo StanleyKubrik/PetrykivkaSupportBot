@@ -55,4 +55,4 @@ def get_db_url(sql_base):
         password = app_config.get_setting('SQL_PBI', 'password')
 
     return f'mssql+pyodbc://{username}:{password}@{server}:{port}' \
-           f'/{database}?driver={driver}'
+           f'/{database}?driver={driver}&MARS_Connection=Yes'

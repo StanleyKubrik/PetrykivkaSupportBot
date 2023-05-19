@@ -5,8 +5,8 @@ from models.command_permissions import *
 
 
 if __name__ == '__main__':
-    # bot.polling()
+    bot.polling()
 
     # print(get_admins_chat_id())
 
-    is_user_banned(327444916)
+    # is_user_banned(327444916)
