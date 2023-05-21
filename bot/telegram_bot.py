@@ -1,6 +1,9 @@
+"""File for work with bot methods."""
 import telebot as tb
 from config.config import *
 from models.people.users import *
+from models.appeals.processed_messages import *
+from models.appeals.appeals import *
 from models.command_permissions import *
 
 APP_CONFIG_PATH = './config/config.ini'
@@ -10,16 +13,18 @@ bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    user_role = get_user_role_by_telegram_id(message.chat.id)
+    user_role = get_user_role_by_tg_id(message.chat.id)
     user_authentication(user_role, message.chat.id)
 
 
-# @bot.message_handler(func=lambda message: True)
-# def echo(message):
-#     bot.send_message(message.chat.id, message.text)
+@bot.message_handler(func=lambda message: True)
+def echo(message):
+    user_id = get_user_id_by_tg_id(message.chat.id)
+    new_msg = ProcessedMessages(User_ID=user_id, TelegramMessageID=message.message_id, MessageData=message.text)
+    new_msg.write_in_db()
 
 
-def user_authentication(user_role, chat_id):
+def user_authentication(user_role: int, chat_id: int):
     """
     Use this method when running a bot to validate user data and to determine user role.
 
@@ -53,11 +58,12 @@ def user_authentication(user_role, chat_id):
         bot.send_message(chat_id, u'Вибачте, але ми з Вами не знайомі! Зверніться до технічної підтримки 😉')
 
 
-def is_user_banned(user_chat_id):
+def is_user_banned(user_chat_id: int):
     """
-    The method checks if the user has banned the bot.
+    Method checks if the user has banned the bot.
 
     :param user_chat_id: user Telegram chat ID.
+
     """
 
     try:

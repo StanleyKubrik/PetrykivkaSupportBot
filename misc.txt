@@ -29,3 +29,9 @@ def show_yurec(message):
 def show_dick(message):
     with open('dick.jpg', 'rb') as ph:
         bot.send_photo(message.chat.id, ph)
+
+
+:param User_ID: user ID
+:param TelegramMessageID: telegram ID of new message
+:param MessageData: data (text, media etc.) of new message; for media - ID from Telegram
+:param Appeal_ID: ID of appeal based on current message

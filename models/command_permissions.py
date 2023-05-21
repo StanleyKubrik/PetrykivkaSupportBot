@@ -7,6 +7,7 @@ from models.people.roles import *
 
 
 class CommandPermissions(Base):
+    """Model for work with permissions to bot commands."""
     __tablename__ = 'CommandPermissions'
 
     ID = Column(Integer, unique=True, primary_key=True, autoincrement=True)
@@ -17,7 +18,13 @@ class CommandPermissions(Base):
     roles = relationship('Roles', back_populates='command_permissions')
 
 
-def generate_command_list(role_id):
+def generate_command_list(role_id) -> list[tb.types.BotCommand]:
+    """
+    Generate command list based on taken role ID.
+
+    :param role_id: user's role ID
+    :return: list of BotCommand elements
+    """
     commands_tuples_list = session.query(Commands.Command, Commands.Name) \
         .join(CommandPermissions) \
         .filter(CommandPermissions.Role_ID == role_id) \

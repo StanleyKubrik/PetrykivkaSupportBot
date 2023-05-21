@@ -5,6 +5,7 @@ from models.appeals.appeals import *
 
 
 class AppealStatuses(Base):
+    """Model for work with appeal statuses."""
     __tablename__ = 'AppealStatuses'
     __table_args__ = {'schema': 'Appeals'}
 

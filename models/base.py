@@ -1,3 +1,4 @@
+"""File for work with SQLAlchemy ORM mapper and session."""
 from sqlalchemy.orm import declarative_base, sessionmaker
 from utils.sql import SQL
 

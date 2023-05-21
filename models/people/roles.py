@@ -5,6 +5,7 @@ from models.people.users import *
 
 
 class Roles(Base):
+    """Model for work with user roles."""
     __tablename__ = 'Roles'
     __table_args__ = {'schema': 'People'}
 
