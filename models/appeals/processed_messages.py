@@ -14,7 +14,8 @@ class ProcessedMessages(Base):
     ----------
     **User_ID**: user ID in DB\n
     **TelegramMessageID**: Telegram ID of a processed message\n
-    **MessageData**: data (text, media etc.) of a processed message; for media need to write Telegram ID's\n
+    **Text**: text of a processed message\n
+    **MediaID**: media Telegram ID's\n
     **Appeal_ID**: appeal ID that based on the current processed message\n
 
     Methods:
@@ -32,7 +33,8 @@ class ProcessedMessages(Base):
     DateTime = Column(DateTime, nullable=False, default=datetime.now())
     User_ID = Column(Integer, ForeignKey('People.Users.ID'), nullable=False)
     TelegramMessageID = Column(Integer, nullable=False)
-    MessageData = Column(VARCHAR())
+    Text = Column(VARCHAR())
+    MediaID = Column(Integer)
     Appeal_ID = Column(Integer, ForeignKey('Appeals.Appeals.ID'))
 
     users = relationship('Users', back_populates='processed_messages')
@@ -44,7 +46,7 @@ class ProcessedMessages(Base):
         session.commit()
 
 
-def get_new_msg_by_user(user_id) -> dict:
-    session.query(ProcessedMessages)\
-        .filter(and_(ProcessedMessages.User_ID == user_id, ProcessedMessages.Appeal_ID is None))\
+def get_new_msgs_by_user(user_id) -> list:
+    return session.query(ProcessedMessages)\
+        .filter(and_(ProcessedMessages.User_ID == user_id, ProcessedMessages.Appeal_ID.is_(None)))\
         .all()
