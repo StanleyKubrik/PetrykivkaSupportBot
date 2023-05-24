@@ -8,6 +8,7 @@ from models.people.roles import *
 
 
 class Users(Base):
+    """Model for work with bot users."""
     __tablename__ = 'Users'
     __table_args__ = {'schema': 'People'}
 
@@ -24,11 +25,37 @@ class Users(Base):
     tickets = relationship('Tickets', back_populates='users')
     roles = relationship('Roles', back_populates='users')
 
-    def get_user_by_id(self, user_id: int):
-        return session.query(self).filter_by(ID=f'{user_id}')
+
+def get_user_id_by_tg_id(tg_chat_id: int) -> int:
+    """
+    Return user ID.
+
+    :param tg_chat_id: user Telegram chat ID
+    :return: user ID
+    """
+    return session.query(Users.ID)\
+        .filter(and_(Users.TelegramChatID == tg_chat_id, Users.IsActive == 1))\
+        .scalar()
 
 
-def get_user_role_by_telegram_id(user_telegram_id: int):
-    return session.query(Users.Role_ID).filter(
-        and_(Users.TelegramChatID == user_telegram_id, Users.IsActive == 1)
-    ).scalar()
+def get_user_role_by_tg_id(user_tg_id: int) -> int:
+    """
+    Return ID of user role.
+
+    :param user_tg_id: user Telegram chat ID
+    :return: user role ID
+    """
+    return session.query(Users.Role_ID)\
+        .filter(and_(Users.TelegramChatID == user_tg_id, Users.IsActive == 1))\
+        .scalar()
+
+
+def get_admins_chat_id() -> list:
+    """
+    Return list of current admins IDs.
+
+    :return: list of admins IDs.
+    """
+    return session.query(Users.TelegramChatID) \
+        .filter(and_(Users.Role_ID == 1, Users.IsActive == 1)) \
+        .all()

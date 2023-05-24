@@ -9,7 +9,7 @@ app_config = Config(APP_CONFIG_PATH)
 
 
 class SQL:
-    def __init__(self, sql_base):
+    def __init__(self, sql_base: str):
         self.engine = None
         self.conn = None
         self.session = None
@@ -55,4 +55,4 @@ def get_db_url(sql_base):
         password = app_config.get_setting('SQL_PBI', 'password')
 
     return f'mssql+pyodbc://{username}:{password}@{server}:{port}' \
-           f'/{database}?driver={driver}'
+           f'/{database}?driver={driver}&MARS_Connection=Yes'

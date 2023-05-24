@@ -1,4 +1,5 @@
-"""Initial
+"""
+Initial
 
 Revision ID: 11a4a30ddff3
 Revises: 

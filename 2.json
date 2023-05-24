@@ -1,0 +1,54 @@
+{
+  "update_id": 829178766,
+  "message": {
+    "message_id": 2192569,
+    "from": {
+      "id": 329518676,
+      "is_bot": false,
+      "first_name": "Mykyta",
+      "last_name": "Sukhonosov \ud83c\uddfa\ud83c\udde6",
+      "username": "TheChiefChiefChief",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 329518676,
+      "first_name": "Mykyta",
+      "last_name": "Sukhonosov \ud83c\uddfa\ud83c\udde6",
+      "username": "TheChiefChiefChief",
+      "type": "private"
+    },
+    "date": 1684697252,
+    "forward_from_chat": {
+      "id": -1001278252976,
+      "title": "Perepichka NEWS \ud83c\uddfa\ud83c\udde6",
+      "type": "channel"
+    },
+    "forward_from_message_id": 56576,
+    "forward_date": 1684594370,
+    "media_group_id": "13477578019985170",
+    "video": {
+      "duration": 53,
+      "width": 640,
+      "height": 640,
+      "file_name": "IMG_3039.mp4",
+      "mime_type": "video/mp4",
+      "thumbnail": {
+        "file_id": "AAMCAgADGQEAASF0uWRqcKTFXYu9GOtAaMJGrndgq6pfAAIzLAACCDJIS0m26J7F7O3OAQAHbQADLwQ",
+        "file_unique_id": "AQADMywAAggySEty",
+        "file_size": 6807,
+        "width": 320,
+        "height": 320
+      },
+      "thumb": {
+        "file_id": "AAMCAgADGQEAASF0uWRqcKTFXYu9GOtAaMJGrndgq6pfAAIzLAACCDJIS0m26J7F7O3OAQAHbQADLwQ",
+        "file_unique_id": "AQADMywAAggySEty",
+        "file_size": 6807,
+        "width": 320,
+        "height": 320
+      },
+      "file_id": "BAACAgIAAxkBAAEhdLlkanCkxV2LvRjrQGjCRq53YKuqXwACMywAAggySEtJtuiexeztzi8E",
+      "file_unique_id": "AgADMywAAggySEs",
+      "file_size": 4898675
+    }
+  }
+}

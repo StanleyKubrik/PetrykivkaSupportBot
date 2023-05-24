@@ -5,6 +5,7 @@ from models.people.users import *
 
 
 class Roles(Base):
+    """Model for work with user roles."""
     __tablename__ = 'Roles'
     __table_args__ = {'schema': 'People'}
 
@@ -12,3 +13,4 @@ class Roles(Base):
     Name = Column(VARCHAR(50), nullable=False)
 
     users = relationship('Users', back_populates='roles')
+    command_permissions = relationship('CommandPermissions', back_populates='roles')

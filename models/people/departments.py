@@ -5,6 +5,7 @@ from models.appeals.appeals import *
 
 
 class Departments(Base):
+    """Model for work with departments."""
     __tablename__ = 'Departments'
     __table_args__ = {'schema': 'People'}
 

@@ -13,6 +13,8 @@ from models.tickets.tickets import *
 from models.tickets.ticket_categories import *
 from models.tickets.ticket_category_properties import *
 from models.tickets.ticket_category_property_values import *
+from models.commands import *
+from models.command_permissions import *
 from models.base import Base, sql_engine
 
 # this is the Alembic Config object, which provides

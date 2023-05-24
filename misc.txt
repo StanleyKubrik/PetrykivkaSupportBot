@@ -18,3 +18,20 @@
 # def getUserERP(message):
 #     user_adin_s = connect.get_people_by_telegram_id(message.chat.id)
 #     bot.send_message(message.chat.id, f'You are {user_adin_s}')
+
+@bot.message_handler(commands=['show_yurec'])
+def show_yurec(message):
+    with open('yurec.jpg', 'rb') as ph:
+        bot.send_photo(message.chat.id, ph)
+
+
+@bot.message_handler(commands=['show_dick'])
+def show_dick(message):
+    with open('dick.jpg', 'rb') as ph:
+        bot.send_photo(message.chat.id, ph)
+
+
+:param User_ID: user ID
+:param TelegramMessageID: telegram ID of new message
+:param MessageData: data (text, media etc.) of new message; for media - ID from Telegram
+:param Appeal_ID: ID of appeal based on current message
