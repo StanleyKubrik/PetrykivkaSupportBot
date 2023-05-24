@@ -17,12 +17,12 @@ def start(message):
     user_authentication(user_role, message.chat.id)
 
 
-@bot.message_handler(func=lambda message: True)
-def new_msg_handler(message):
-    # user_id = get_user_id_by_tg_id(message.chat.id)
-    # new_msg = ProcessedMessages(User_ID=user_id, TelegramMessageID=message.message_id, Text=message.text)
-    # new_msg.write_in_db()
-    print(message)
+# @bot.message_handler(func=lambda message: True)
+# def new_msg_handler(message):
+#     # user_id = get_user_id_by_tg_id(message.chat.id)
+#     # new_msg = ProcessedMessages(User_ID=user_id, TelegramMessageID=message.message_id, Text=message.text)
+#     # new_msg.write_in_db()
+#     print(message)
 
 
 def user_authentication(user_role: int, chat_id: int):
