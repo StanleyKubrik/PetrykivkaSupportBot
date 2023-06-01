@@ -11,18 +11,20 @@ app_config = Config(APP_CONFIG_PATH)
 bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
 
 
+@bot.message_handler(content_types=['text', 'photo', 'video'])
+def new_msg_handler(message):
+    user_id = get_user_id_by_tg_id(message.chat.id)
+    txt = message.text
+    media_id = ''
+    # print(message.photo[-1].file_id)
+    # new_msg.write_in_db()
+    print(message)
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
     user_role = get_user_role_by_tg_id(message.chat.id)
     user_authentication(user_role, message.chat.id)
-
-
-# @bot.message_handler(func=lambda message: True)
-# def new_msg_handler(message):
-#     # user_id = get_user_id_by_tg_id(message.chat.id)
-#     # new_msg = ProcessedMessages(User_ID=user_id, TelegramMessageID=message.message_id, Text=message.text)
-#     # new_msg.write_in_db()
-#     print(message)
 
 
 def user_authentication(user_role: int, chat_id: int):
