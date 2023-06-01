@@ -14,10 +14,15 @@ bot = tb.TeleBot(app_config.get_setting('TelegramAPI', 'api_key'))
 @bot.message_handler(content_types=['text', 'photo', 'video'])
 def new_msg_handler(message):
     user_id = get_user_id_by_tg_id(message.chat.id)
-    txt = message.text
+    txt = message.text or message.caption
     media_id = ''
-    # print(message.photo[-1].file_id)
-    # new_msg.write_in_db()
+    if message.media_group_id is not None:
+        media_id = message.media_group_id
+    # elif message.photo is not None:
+    #     media_id = message.photo[-1].file_id
+    # elif message.video is not None:
+    #     media_id = message.video.file_id
+    # print(txt, media_id)
     print(message)
 
 
